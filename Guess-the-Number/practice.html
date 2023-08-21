@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function removeOption() {
+        var x = document.getElementById('mySelect');
+        x.remove(x.selectedIndex);
+      }
+    </script>
+  </head>
+  <body>
+    <form>
+      <select id="mySelect">
+        <option>Red</option>
+        <option>Blue</option>
+      </select>
+      <input type="button" onclick="removeOption()" value="Click" />
+    </form>
+    <details>
+      <summary>Subject</summary>
+      <p>I Love You</p>
+    </details>
+    <script type="text/javascript">
+      const test = window.history;
+      const test2 = window.history.pushState;
+      console.log(test);
+      console.log(test2);
+      if (window.history && window.history.pushState) {
+        console.log('Supported HTML 5');
+      } else {
+        console.log('Not Supported HTML 5');
+      }
+    </script>
+  </body>
+</html>

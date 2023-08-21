@@ -1,0 +1,9 @@
+function grow(x) {
+  let product = 1;
+  for (i = 0; i < x.length; i++) {
+    product = x[i] * product;
+  }
+  return product;
+}
+
+console.log(grow([1, 2, 3]));
