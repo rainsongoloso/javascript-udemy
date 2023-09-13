@@ -48,12 +48,10 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // Display the movements
-const displayMovements = function(movements, sort = false) {
+const displayMovements = function(movements) {
     containerMovements.innerHTML = '';
-
-    const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
-
-    movs.forEach(function(move, i) {
+    
+    movements.forEach(function(move, i) {
         const type = move > 0 ? 'deposit' : 'withdrawal';
         const html = `<div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
@@ -119,6 +117,7 @@ const updateUi = function(acc){
 
 // Login
 let currentAccount;
+
 // Find method
 btnLogin.addEventListener('click', (e) => {
     // Prevent FORM from submitting
@@ -135,8 +134,7 @@ btnLogin.addEventListener('click', (e) => {
         updateUi(currentAccount);
 
         console.log(`Account found, Successfully Log in`);
-    } else {
-        alert("Account not found!");    
+    } else {    
         console.log(`Account not found!`);
     };
 
@@ -166,29 +164,11 @@ btnTransfer.addEventListener('click', (e) => {
 
             updateUi(currentAccount);
         } else {
-            alert("Insufficient funds");
             console.log('Insufficient funds');
         }
     } else {
-        alert('Cannot transfer to this account');
         console.log('Cannot transfer to this account');
     };
-});
-
-// Request loan
-btnLoan.addEventListener('click', function(e){
-    e.preventDefault();
-
-    const amount = Number(inputLoanAmount.value);
-
-    if(amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)){
-        // Add movement
-        currentAccount.movements.push(amount);
-
-        // Update UI
-        updateUi(currentAccount);
-    }
-    inputLoanAmount.value = '';
 });
 
 // Close Account
@@ -208,35 +188,24 @@ btnClose.addEventListener('click', (e) => {
             // Hide UI
             containerApp.style.opacity = 0;
         } else {
-            alert('Delete account unsuccessful');
+            console.log('Not deleted!');
         }
     } else {
-        alert('Invalid!');
+        console.log('Invalid!');
     };
 
     inputClosePin.value = inputCloseUsername.value = "";
 });
 
-// Sort
-let sorted = false;
 btnSort.addEventListener('click', (e) => {
     e.preventDefault();
-
-    /*
-   My Version
-    if(sorted) {
-    sorted = false;
-    displayMovements(currentAccount.movements, sorted);
-   } else {
-    sorted = true;
-    displayMovements(currentAccount.movements, sorted);
-   }
-   */
-
-   // Nice version
-   displayMovements(currentAccount.movements, !sorted);
-   sorted = !sorted;
+    console.log("test");
 });
+
+
+
+
+
 // const euroToUsd = 1.1;
 
 const moveData = acct1.movements;
@@ -310,108 +279,3 @@ console.log(account);
 let acc;
 for(const a of accounts) if(a.owner === 'Rainson Goloso') acc = a;
 console.log(acc);
-
-// Some = check if it is in data Returns boolean
-console.log(moveData);
-
-// Equality
-console.log(moveData.includes(-130));
-
-// Condition
-console.log(moveData.some(mov => mov === -130));
-
-const anyDeposits = moveData.some(mov => mov > 0);
-
-console.log(anyDeposits);
-
-// Every = check if all data is similar Returns boolean
-console.log(moveData.every(mov => mov > 0));
-
-// Separate callback
-const deposit = mov => mov > 0;
-console.log(moveData.some(deposit));
-console.log(moveData.every(deposit));
-console.log(moveData.filter(deposit));
-
-// Flat method
-const accountsMovements = accounts.map(acc => acc.movements).flat().reduce((acc, move) => acc + move, 0);
-const accMovFlatmap = accounts.flatMap(acc => acc.movements).reduce((acc, move) => acc + move, 0);
-console.log(accountsMovements);
-console.log(accMovFlatmap);
-
-// Sorting Arrays
-console.log(moveData);
-
-// return < 0, A, B (keep order)
-// return > 0, B, A (switch order)
-
-// Ascending order
-moveData.sort((a, b) => {
-    if(a > b)
-        return 1;
-    if(a < b)
-        return -1;
-});
-
-console.log('Ascending order');
-console.log(moveData);
-
-//Improvement
-moveData.sort((a,b) => a-b);
-console.log('Improved code Ascending order');
-console.log(moveData);
-
-// Descending order
-moveData.sort((a, b) => {
-    if(a > b)
-        return -1;
-    if(a < b)
-        return 1;
-});
-
-console.log('Descending order')
-console.log(moveData);
-
-// Descending order
-moveData.sort((a, b) => b-a);
-console.log('Improved code Descending order')
-console.log(moveData);
-
-
-// array Fill method 
-const arr = [1,2,3,4,5,6,7];
-console.log(new Array(1,2,3,4,5,6,7));
-
-// Empty arrays + fill method
-const x = new Array(7);
-console.log(x);
-
-// Console.log(x.map(() => 5);
-x.fill(1,3,5);
-x.fill(1);
-console.log(x);
-
-arr.fill(23, 2, 6);
-console.log(arr);
-
-// Array from
-const y = Array.from({length: 7}, () => 1);
-console.log(y);
-
-const z = Array.from({length: 7}, (_, i) => i + 1);
-console.log(z);
-
-const randomDice = Array.from({length: 100}, () => Math.floor(Math.random() * 100));
-console.log(randomDice);
-
-labelBalance.addEventListener('click', function() {
-    const movementsUI = Array.from(document.querySelectorAll('.movements__value'), 
-    el => Number(el.textContent.replace('₱', '')));
-    console.log(movementsUI);
-});
-
-labelBalance.addEventListener('click', function() {
-    const movementsUI = Array.from(document.querySelectorAll('.movements__value'), 
-    el => Number(el.textContent.replace('₱', '')));
-    console.log(movementsUI);
-});
