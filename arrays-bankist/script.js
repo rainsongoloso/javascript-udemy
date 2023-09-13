@@ -409,9 +409,3 @@ labelBalance.addEventListener('click', function() {
     el => Number(el.textContent.replace('₱', '')));
     console.log(movementsUI);
 });
-
-labelBalance.addEventListener('click', function() {
-    const movementsUI = Array.from(document.querySelectorAll('.movements__value'), 
-    el => Number(el.textContent.replace('₱', '')));
-    console.log(movementsUI);
-});
