@@ -237,6 +237,8 @@ btnSort.addEventListener('click', (e) => {
    displayMovements(currentAccount.movements, !sorted);
    sorted = !sorted;
 });
+
+
 // const euroToUsd = 1.1;
 
 const moveData = acct1.movements;
@@ -409,3 +411,12 @@ labelBalance.addEventListener('click', function() {
     el => Number(el.textContent.replace('₱', '')));
     console.log(movementsUI);
 });
+<<<<<<< HEAD
+=======
+
+labelBalance.addEventListener('click', function() {
+    const movementsUI = Array.from(document.querySelectorAll('.movements__value'), 
+    el => Number(el.textContent.replace('₱', '')));
+    console.log(movementsUI);
+});
+>>>>>>> javascript-tutorial-backup
