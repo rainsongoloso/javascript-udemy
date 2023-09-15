@@ -411,12 +411,6 @@ labelBalance.addEventListener('click', function() {
     el => Number(el.textContent.replace('₱', '')));
     console.log(movementsUI);
 });
-<<<<<<< HEAD
-=======
 
-labelBalance.addEventListener('click', function() {
-    const movementsUI = Array.from(document.querySelectorAll('.movements__value'), 
-    el => Number(el.textContent.replace('₱', '')));
-    console.log(movementsUI);
-});
->>>>>>> javascript-tutorial-backup
+// this is a comment
+const thisIt = "try this on your side";
