@@ -22,6 +22,13 @@ const acct3 = {
     pin: 3333,
 };
 
+const acct4 = {
+    owner: 'Jainer Dash',
+    movements: [536, -296, -755, 617, 940, -979, 821, -169, 814, 951],
+    interestRate: 0.9,
+    pin: 3333,
+};
+
 const accounts = [acct1, acct2, acct3];
 
 // Elements
